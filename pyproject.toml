@@ -8,12 +8,14 @@ dependencies = [
     "requests",
     "rich",
     "pydantic",
-    "zeep",     # per VIES SOAP
+    "zeep",         # per VIES SOAP
     "ddgs",
     "mypy",
     "black",
     "isort",
     "pytest",
+    "flake8",
+    "types-pytest",
 ]
 
 [tool.mypy]
