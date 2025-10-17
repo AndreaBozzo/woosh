@@ -43,3 +43,9 @@ coverage.xml
 .pyre/
 # pytype static type analyzer
 .pytype/
+
+#ruff cache
+.ruff_cache/
+
+#pytest cache
+.pytest_cache/
