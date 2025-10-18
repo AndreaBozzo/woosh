@@ -41,7 +41,7 @@ Results are displayed in formatted tables and can be saved to JSON.
 ## Project Structure
 
 ```
-company_finder/
+woosh/
 ├── enrich.py       # VAT validation + search
 ├── vies.py         # VIES SOAP client
 ├── models.py       # Data models
