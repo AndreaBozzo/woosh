@@ -101,11 +101,11 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      <div className="max-w-3xl mx-auto px-4 py-16">
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-3xl mx-auto px-4 py-12 sm:py-16">
         {/* Header */}
-        <div className="mb-16">
-          <h1 className="text-5xl font-light tracking-tight mb-3">woosh</h1>
+        <div className="mb-12">
+          <h1 className="text-4xl sm:text-5xl font-light tracking-tight mb-2 text-gray-900">woosh</h1>
           <p className="text-gray-500 text-sm">Company Search Tool</p>
         </div>
 
@@ -146,17 +146,19 @@ export default function Home() {
         </div>
 
         {/* Search Input */}
-        <div className="mb-12">
-          <input
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            onKeyPress={(e) => e.key === "Enter" && handleSearch()}
-            placeholder={mode === "name" ? "enter company name" : "enter VAT number"}
-            className="w-full px-0 py-4 text-2xl border-0 border-b-2 border-gray-200 focus:border-black focus:outline-none transition-colors placeholder:text-gray-300"
-            autoFocus
-          />
-          {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
+        <div className="mb-8">
+          <div className="max-w-xl bg-white rounded-lg shadow-sm border border-gray-200 p-5">
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+              placeholder={mode === "name" ? "enter company name..." : "enter VAT number..."}
+              className="w-full px-0 py-2 text-base bg-transparent border-0 focus:outline-none placeholder:text-gray-400"
+              autoFocus
+            />
+            {error && <p className="mt-3 text-sm text-red-600">{error}</p>}
+          </div>
         </div>
 
         {/* Loading */}
@@ -168,15 +170,15 @@ export default function Home() {
 
         {/* VAT Results */}
         {vatInfo && !loading && (
-          <div className="space-y-6">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
             {vatInfo.is_valid ? (
               <>
-                <div className="flex items-baseline gap-3 mb-3">
-                  <h2 className="text-xs uppercase tracking-wider text-gray-400 font-mono">
+                <div className="flex items-baseline gap-3 mb-4 pb-3 border-b border-gray-100">
+                  <h2 className="text-xs uppercase tracking-wider text-gray-500 font-mono">
                     infos
                   </h2>
-                  <div className="flex-1 border-b border-gray-200"></div>
-                  <span className="text-xs text-green-600 font-mono">valid</span>
+                  <div className="flex-1"></div>
+                  <span className="text-xs text-green-600 font-medium">valid</span>
                 </div>
                 <div className="space-y-3 text-sm">
                   <div className="flex">
@@ -203,12 +205,12 @@ export default function Home() {
               </>
             ) : (
               <div>
-                <div className="flex items-baseline gap-3 mb-3">
-                  <h2 className="text-xs uppercase tracking-wider text-gray-400 font-mono">
+                <div className="flex items-baseline gap-3 mb-4 pb-3 border-b border-gray-100">
+                  <h2 className="text-xs uppercase tracking-wider text-gray-500 font-mono">
                     risultato
                   </h2>
-                  <div className="flex-1 border-b border-gray-200"></div>
-                  <span className="text-xs text-red-600 font-mono">non valida</span>
+                  <div className="flex-1"></div>
+                  <span className="text-xs text-red-600 font-medium">non valida</span>
                 </div>
                 {vatInfo.error_message && (
                   <p className="text-sm text-gray-600">{vatInfo.error_message}</p>
@@ -220,21 +222,23 @@ export default function Home() {
 
         {/* Name Search Results */}
         {results && !loading && (
-          <div className="space-y-12">
+          <div className="space-y-6">
             {Object.keys(results.results).length === 0 ? (
-              <p className="text-gray-400 text-sm">nessun risultato</p>
+              <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 text-center">
+                <p className="text-gray-400 text-sm">nessun risultato</p>
+              </div>
             ) : (
               <>
                 {Object.entries(results.results).map(([category, urls]) => (
-                  <div key={category} className="group">
-                    <div className="flex items-baseline gap-3 mb-3 sticky top-0 bg-white py-2">
-                      <h2 className="text-xs uppercase tracking-wider text-gray-400 font-mono">
+                  <div key={category} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                    <div className="flex items-baseline gap-3 mb-4 pb-3 border-b border-gray-100">
+                      <h2 className="text-xs uppercase tracking-wider text-gray-500 font-mono">
                         {category.replace(/_/g, " ")}
                       </h2>
-                      <div className="flex-1 border-b border-gray-200"></div>
+                      <div className="flex-1"></div>
                       <span className="text-xs text-gray-400 font-mono">{urls.length}</span>
                     </div>
-                    <ul className="space-y-1">
+                    <ul className="space-y-2">
                       {urls.map((url, idx) => {
                         const { domain, path } = parseUrl(url);
                         return (
@@ -243,13 +247,13 @@ export default function Home() {
                               href={url}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="block py-1 text-sm hover:translate-x-1 transition-all duration-150 group"
+                              className="block py-2 px-3 -mx-3 text-sm rounded hover:bg-gray-50 transition-colors group"
                             >
                               <span className="text-gray-900 group-hover:text-black font-medium">
                                 {domain}
                               </span>
                               {path && (
-                                <span className="text-gray-400 group-hover:text-gray-600 ml-1">
+                                <span className="text-gray-500 group-hover:text-gray-700 ml-1 text-xs">
                                   {path}
                                 </span>
                               )}
