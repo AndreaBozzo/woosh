@@ -74,3 +74,34 @@ Code quality tools:
 ## License
 
 This project is under active development.
+
+
+## JSON Output example searching Coca Cola IT VAT number
+
+```json
+{
+  "input": "IT00488410010",
+  "type": "vat",
+  "vat_validation": {
+    "country_code": "IT",
+    "vat_number": "00488410010",
+    "is_valid": true,
+    "company_name": "COCA COLA HBC ITALIA S.R.L.",
+    "company_address": "VIALE EUROPA 12 20090 ASSAGO MI ITALY"
+  },
+  "urls": [
+    {
+      "url": "https://www.coca-colahellenic.it/",
+      "categories": ["institutional"]
+    },
+    {
+      "url": "https://www.facebook.com/CocaColaHBCItalia/",
+      "categories": ["social"]
+    },
+    {
+      "url": "https://it.wikipedia.org/wiki/Coca-Cola_HBC_Italia",
+      "categories": ["news"]
+    }
+  ]
+}
+```

@@ -49,3 +49,7 @@ coverage.xml
 
 #pytest cache
 .pytest_cache/
+
+# results
+results/*
+!results/.gitkeep

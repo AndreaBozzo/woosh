@@ -1,17 +1,26 @@
 import json
 import os
 import re
+from datetime import datetime
 from typing import Dict, List
 
+from pydantic import BaseModel, Field
 from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
 
-from woosh.enrich import lookup_vat
-from woosh.models import CompanyData
 from woosh.search import search_companies
+from woosh.vies import VATInfo, validate_vat
 
 console = Console()
+
+
+class CompanyData(BaseModel):
+    """Company data: VAT + URLs."""
+
+    vat: VATInfo
+    urls: Dict[str, List[str]]
+    timestamp: datetime = Field(default_factory=datetime.now)
 
 
 def is_vat_number(text: str) -> bool:
@@ -80,9 +89,15 @@ def main() -> None:
     # Smart detection: VAT or name?
     if is_vat_number(query):
         # VAT lookup
-        console.print(f"[cyan]Validating VAT...[/cyan]")
+        console.print("[cyan]Validating VAT...[/cyan]")
         with console.status("[green]Searching..."):
-            data = lookup_vat(query)
+            vat_info = validate_vat(query)
+            if vat_info.is_valid and vat_info.company_name:
+                search_query = vat_info.company_name
+            else:
+                search_query = query
+            urls = search_companies(search_query)
+            data = CompanyData(vat=vat_info, urls=urls)
 
         display_vat_data(data)
 
