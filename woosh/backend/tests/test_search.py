@@ -1,6 +1,6 @@
 from typing import Any, Optional
 
-from woosh.backend.search import search_companies
+from search import search_companies
 
 
 class MockDDGS:
@@ -34,7 +34,7 @@ class MockDDGS:
 
 def test_search_companies(monkeypatch: Any) -> None:
     # Patch DDGS to use the mock class
-    monkeypatch.setattr("woosh.search.DDGS", MockDDGS)
+    monkeypatch.setattr("search.DDGS", MockDDGS)
 
     query = "Coca Cola"
     results = search_companies(query, max_results=10)

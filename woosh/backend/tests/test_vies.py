@@ -1,6 +1,6 @@
 """Tests for VIES VAT validation module."""
 
-from woosh.backend.vies import parse_vat_input
+from vies import parse_vat_input
 
 
 class TestParseVatInput:
