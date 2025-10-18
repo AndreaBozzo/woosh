@@ -42,9 +42,7 @@ Results are displayed in formatted tables and can be saved to JSON.
 
 ```
 woosh/
-├── enrich.py       # VAT validation + search
 ├── vies.py         # VIES SOAP client
-├── models.py       # Data models
 ├── search.py       # DuckDuckGo search
 ├── classify.py     # URL categorization
 └── config.py       # Categories config
