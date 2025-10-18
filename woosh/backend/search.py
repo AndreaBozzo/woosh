@@ -1,10 +1,9 @@
 from typing import Dict, List
 from urllib.parse import ParseResult, urlparse
 
+from classify import classify_url
+from config import EXCLUDED
 from ddgs import DDGS
-
-from .classify import classify_url
-from .config import EXCLUDED
 
 
 def search_companies(query: str, max_results: int = 100) -> Dict[str, List[str]]:

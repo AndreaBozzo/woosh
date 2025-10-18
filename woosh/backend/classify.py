@@ -1,6 +1,6 @@
 from urllib.parse import urlparse
 
-from .config import RULES
+from config import RULES
 
 
 def classify_url(url: str) -> str:

@@ -1,105 +1,156 @@
-# woosh
+# Woosh
 
-Python tool for EU VAT validation and company web search.
-Helps to get rid of Google bullsh*t and ads.
+Applicazione per la ricerca e categorizzazione di informazioni su aziende.
 
-## Overview
-
-Search for companies by name or validate EU VAT numbers via VIES. Automatically categorizes URLs found into social media, institutional sites, e-commerce, news, etc.
-
-## Features
-
-- **EU VAT validation** via VIES (VAT Information Exchange System)
-- **Smart input detection**: automatically detects if input is VAT number or company name
-- Web search via DuckDuckGo
-- URL classification into categories (social, institutional, e-commerce, news, open data, etc.)
-- JSON export
-
-## Requirements
-
-- Python 3.10 or higher
-
-## Installation
-
-```bash
-pip install -e .
-```
-
-## Usage
-
-```bash
-python main.py
-```
-
-Enter either:
-
-- **VAT number** (e.g., `IT12345678901`) - validates via VIES and searches for company URLs
-- **Company name** (e.g., `Microsoft`) - searches for URLs
-
-Results are displayed in formatted tables and can be saved to JSON.
-
-## Project Structure
+## Struttura del Progetto
 
 ```
 woosh/
-├── vies.py         # VIES SOAP client
-├── search.py       # DuckDuckGo search
-├── classify.py     # URL categorization
-└── config.py       # Categories config
-main.py             # CLI (smart VAT/name detection)
+├── backend/          # FastAPI backend
+│   ├── app.py       # API endpoints
+│   ├── search.py    # Logica di ricerca
+│   ├── classify.py  # Classificazione URL
+│   ├── config.py    # Configurazione categorie
+│   └── requirements.txt
+├── frontend/        # Next.js frontend
+│   └── src/
+│       └── app/
+│           └── page.tsx
+└── start.py         # Script di avvio rapido
 ```
 
-## Development
+## Requisiti
 
-Install development dependencies:
+- Python 3.8+
+- Node.js 18+
+- npm
+
+## Installazione
+
+### Backend
 
 ```bash
-pip install -e ".[dev]"
+cd woosh/backend
+pip install -r requirements.txt
 ```
 
-Run tests:
+### Frontend
 
 ```bash
-pytest
+cd woosh/frontend
+npm install
 ```
 
-Code quality tools:
-- **black** - Code formatting (88 char line length)
-- **isort** - Import sorting
-- **mypy** - Type checking
-- **flake8** - Linting
+## Avvio dell'Applicazione
 
-## License
+### Metodo Rapido (Consigliato)
 
-This project is under active development.
+Avvia sia frontend che backend con un solo comando:
 
+```bash
+python start.py
+```
 
-## JSON Output example searching Coca Cola IT VAT number
+Lo script:
+- Avvia automaticamente backend (porta 8000) e frontend (porta 3000)
+- Mostra lo stato di entrambi i servizi
+- Termina entrambi con `Ctrl+C`
 
+### Metodo Manuale
+
+Se preferisci avviare i servizi separatamente:
+
+#### 1. Avvia il Backend (FastAPI)
+
+```bash
+cd woosh/backend
+uvicorn app:app --reload --port 8000
+```
+
+Il backend sara disponibile su `http://localhost:8000`
+
+#### 2. Avvia il Frontend (Next.js)
+
+In un altro terminale:
+
+```bash
+cd woosh/frontend
+npm run dev
+```
+
+Il frontend sara disponibile su `http://localhost:3000`
+
+## Utilizzo
+
+1. Apri il browser su `http://localhost:3000`
+2. Inserisci il nome di un'azienda nel campo di ricerca
+3. Premi Invio per avviare la ricerca
+4. Visualizza i risultati categorizzati per tipo di dominio
+
+## API Endpoints
+
+### GET /api/search
+
+Cerca aziende e restituisce risultati categorizzati.
+
+**Parametri:**
+- `query` (required): Nome dell'azienda da cercare
+- `max_results` (optional): Numero massimo di risultati (default: 100, max: 200)
+
+**Esempio:**
+```bash
+curl "http://localhost:8000/api/search?query=Ferrari&max_results=50"
+```
+
+**Risposta:**
 ```json
 {
-  "input": "IT00488410010",
-  "type": "vat",
-  "vat_validation": {
-    "country_code": "IT",
-    "vat_number": "00488410010",
-    "is_valid": true,
-    "company_name": "COCA COLA HBC ITALIA S.R.L.",
-    "company_address": "VIALE EUROPA 12 20090 ASSAGO MI ITALY"
+  "results": {
+    "istituzionali": ["https://..."],
+    "finance": ["https://..."],
+    "news": ["https://..."]
   },
-  "urls": [
-    {
-      "url": "https://www.coca-colahellenic.it/",
-      "categories": ["institutional"]
-    },
-    {
-      "url": "https://www.facebook.com/CocaColaHBCItalia/",
-      "categories": ["social"]
-    },
-    {
-      "url": "https://it.wikipedia.org/wiki/Coca-Cola_HBC_Italia",
-      "categories": ["news"]
-    }
-  ]
+  "total": 42
 }
 ```
+
+## Categorie
+
+Il sistema classifica automaticamente i risultati nelle seguenti categorie:
+
+- **istituzionali**: Enti governativi e registri ufficiali
+- **open_data**: Database aperti e registri pubblici
+- **finance**: Notizie finanziarie e analisi di mercato
+- **fintech**: Servizi finanziari digitali
+- **blockchain**: Crypto e blockchain
+- **social**: Social media
+- **e-commerce**: Marketplace e negozi online
+- **news**: Testate giornalistiche
+- **startup**: Ecosistema startup
+- **ai**: Intelligenza artificiale
+- **cybersecurity**: Sicurezza informatica
+- **healthcare**: Sanita
+- **legal**: Informazioni legali
+- **real_estate**: Immobiliare
+- **gaming**: Gaming e videogiochi
+- **marketing**: Marketing e pubblicita
+- **altro**: Altri domini non categorizzati
+
+## Configurazione
+
+Le regole di classificazione sono definite in [woosh/backend/config.py](woosh/backend/config.py).
+
+Puoi modificare o aggiungere nuove categorie e regole di matching secondo le tue esigenze.
+
+## Tecnologie Utilizzate
+
+### Backend
+- **FastAPI**: Framework web moderno e veloce
+- **DuckDuckGo Search**: Motore di ricerca per risultati
+- **Pydantic**: Validazione dati
+
+### Frontend
+- **Next.js 15**: Framework React con App Router
+- **React 19**: Libreria UI
+- **Tailwind CSS 4**: Styling
+- **TypeScript**: Type safety
