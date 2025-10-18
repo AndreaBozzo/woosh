@@ -2,7 +2,7 @@
 
 import pytest
 
-from company_finder.vies import parse_vat_input
+from woosh.vies import parse_vat_input
 
 
 class TestParseVatInput:

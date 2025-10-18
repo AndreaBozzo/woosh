@@ -1,6 +1,6 @@
 import pytest
 
-from company_finder.classify import classify_url
+from woosh.classify import classify_url
 
 
 @pytest.mark.parametrize(

@@ -7,9 +7,9 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
 
-from company_finder.enrich import lookup_vat
-from company_finder.models import CompanyData
-from company_finder.search import search_companies
+from woosh.enrich import lookup_vat
+from woosh.models import CompanyData
+from woosh.search import search_companies
 
 console = Console()
 

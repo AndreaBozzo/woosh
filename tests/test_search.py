@@ -1,6 +1,6 @@
 from typing import Any, Optional
 
-from company_finder.search import search_companies
+from woosh.search import search_companies
 
 
 class MockDDGS:
