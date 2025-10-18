@@ -2,7 +2,7 @@
 
 import pytest
 
-from woosh.vies import parse_vat_input
+from woosh.backend.vies import parse_vat_input
 
 
 class TestParseVatInput:

@@ -1,6 +1,6 @@
 import pytest
 
-from woosh.classify import classify_url
+from woosh.backend.classify import classify_url
 
 
 @pytest.mark.parametrize(

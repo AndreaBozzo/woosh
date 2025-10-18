@@ -1,6 +1,6 @@
 from typing import Any, Optional
 
-from woosh.search import search_companies
+from woosh.backend.search import search_companies
 
 
 class MockDDGS:
@@ -24,8 +24,7 @@ class MockDDGS:
             {"href": f"https://www.linkedin.com/company/{company_slug}"},
             {
                 "href": (
-                    f"https://agenziadelleentrate.gov.it"
-                    f"/azienda/{company_slug}"
+                    f"https://agenziadelleentrate.gov.it" f"/azienda/{company_slug}"
                 )
             },
             {"href": f"https://www.amazon.it/dp/{company_slug}"},
@@ -42,9 +41,7 @@ def test_search_companies(monkeypatch: Any) -> None:
 
     expected_results = {
         "social": ["https://www.linkedin.com/company/coca-cola"],
-        "istituzionali": [
-            "https://agenziadelleentrate.gov.it/azienda/coca-cola"
-        ],
+        "istituzionali": ["https://agenziadelleentrate.gov.it/azienda/coca-cola"],
         "e-commerce": ["https://www.amazon.it/dp/coca-cola"],
         "altro": ["https://www.medium.com/@coca-cola"],
     }

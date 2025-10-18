@@ -9,8 +9,8 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
 
-from woosh.search import search_companies
-from woosh.vies import VATInfo, validate_vat
+from woosh.backend.search import search_companies
+from woosh.backend.vies import VATInfo, validate_vat
 
 console = Console()
 
