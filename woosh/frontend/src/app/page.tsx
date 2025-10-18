@@ -29,7 +29,7 @@ export default function Home() {
 
   async function handleNameSearch() {
     if (!query.trim()) {
-      setError("inserisci il nome di un'azienda");
+      setError("insert enterprise name or VAT");
       return;
     }
 
@@ -42,13 +42,13 @@ export default function Home() {
       const res = await fetch(`/api/search?query=${encodeURIComponent(query)}&max_results=100`);
 
       if (!res.ok) {
-        throw new Error("errore durante la ricerca");
+        throw new Error("error during research");
       }
 
       const data = await res.json();
       setResults(data);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "errore durante la ricerca");
+      setError(err instanceof Error ? err.message : "error during research");
     } finally {
       setLoading(false);
     }
@@ -56,7 +56,7 @@ export default function Home() {
 
   async function handleVATSearch() {
     if (!query.trim()) {
-      setError("inserisci una partita iva");
+      setError("insert VAT number");
       return;
     }
 
@@ -69,13 +69,13 @@ export default function Home() {
       const res = await fetch(`/api/vat/${encodeURIComponent(query)}`);
 
       if (!res.ok) {
-        throw new Error("errore durante la validazione");
+        throw new Error("error during validation");
       }
 
       const data = await res.json();
       setVatInfo(data);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "errore durante la validazione");
+      setError(err instanceof Error ? err.message : "error during validation");
     } finally {
       setLoading(false);
     }
@@ -106,7 +106,7 @@ export default function Home() {
         {/* Header */}
         <div className="mb-16">
           <h1 className="text-5xl font-light tracking-tight mb-3">woosh</h1>
-          <p className="text-gray-500 text-sm">ricerca aziende</p>
+          <p className="text-gray-500 text-sm">Company Search Tool</p>
         </div>
 
         {/* Mode Toggle */}
@@ -141,7 +141,7 @@ export default function Home() {
                 : "border-transparent text-gray-400 hover:text-gray-600"
             }`}
           >
-            per partita iva
+            with VAT number
           </button>
         </div>
 
@@ -152,7 +152,7 @@ export default function Home() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyPress={(e) => e.key === "Enter" && handleSearch()}
-            placeholder={mode === "name" ? "nome azienda" : "partita iva"}
+            placeholder={mode === "name" ? "enter company name" : "enter VAT number"}
             className="w-full px-0 py-4 text-2xl border-0 border-b-2 border-gray-200 focus:border-black focus:outline-none transition-colors placeholder:text-gray-300"
             autoFocus
           />
@@ -173,29 +173,29 @@ export default function Home() {
               <>
                 <div className="flex items-baseline gap-3 mb-3">
                   <h2 className="text-xs uppercase tracking-wider text-gray-400 font-mono">
-                    informazioni
+                    infos
                   </h2>
                   <div className="flex-1 border-b border-gray-200"></div>
-                  <span className="text-xs text-green-600 font-mono">valida</span>
+                  <span className="text-xs text-green-600 font-mono">valid</span>
                 </div>
                 <div className="space-y-3 text-sm">
                   <div className="flex">
-                    <span className="text-gray-400 w-32">paese</span>
+                    <span className="text-gray-400 w-32">country</span>
                     <span className="text-gray-900">{vatInfo.country_code}</span>
                   </div>
                   <div className="flex">
-                    <span className="text-gray-400 w-32">partita iva</span>
+                    <span className="text-gray-400 w-32">VAT number</span>
                     <span className="text-gray-900 font-mono">{vatInfo.vat_number}</span>
                   </div>
                   {vatInfo.company_name && (
                     <div className="flex">
-                      <span className="text-gray-400 w-32">azienda</span>
+                      <span className="text-gray-400 w-32">company</span>
                       <span className="text-gray-900">{vatInfo.company_name}</span>
                     </div>
                   )}
                   {vatInfo.company_address && (
                     <div className="flex">
-                      <span className="text-gray-400 w-32">indirizzo</span>
+                      <span className="text-gray-400 w-32">address</span>
                       <span className="text-gray-900">{vatInfo.company_address}</span>
                     </div>
                   )}
