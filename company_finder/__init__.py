@@ -1,14 +1,6 @@
-# Init file for company_finder module
-# This file can be left empty or used to initialize package-level variables
-# or import submodules for easier access.
+"""Company Finder - VAT validation and web search."""
 
-from .classify import classify_url
-from .config import CATEGORY_RULES, EXCLUDED_DOMAINS
+from .enrich import lookup_vat
 from .search import search_companies
 
-__all__ = [
-    "classify_url",
-    "EXCLUDED_DOMAINS",
-    "CATEGORY_RULES",
-    "search_companies",
-]
+__all__ = ["lookup_vat", "search_companies"]
