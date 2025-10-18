@@ -7,6 +7,9 @@ class MockDDGS:
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         pass
 
+    def __enter__(self):
+        return self
+
     def __exit__(
         self,
         exc_type: Optional[type],
@@ -19,7 +22,12 @@ class MockDDGS:
         company_slug = query.lower().replace(" ", "-")
         return [
             {"href": f"https://www.linkedin.com/company/{company_slug}"},
-            {"href": f"https://agenziadelleentrate.gov.it/azienda/{company_slug}"},
+            {
+                "href": (
+                    f"https://agenziadelleentrate.gov.it"
+                    f"/azienda/{company_slug}"
+                )
+            },
             {"href": f"https://www.amazon.it/dp/{company_slug}"},
             {"href": f"https://www.medium.com/@{company_slug}"},
         ]
@@ -27,14 +35,16 @@ class MockDDGS:
 
 def test_search_companies(monkeypatch: Any) -> None:
     # Patch DDGS to use the mock class
-    monkeypatch.setattr("company_finder.search.DDGS", MockDDGS)
+    monkeypatch.setattr("woosh.search.DDGS", MockDDGS)
 
     query = "Coca Cola"
     results = search_companies(query, max_results=10)
 
     expected_results = {
         "social": ["https://www.linkedin.com/company/coca-cola"],
-        "istituzionali": ["https://agenziadelleentrate.gov.it/azienda/coca-cola"],
+        "istituzionali": [
+            "https://agenziadelleentrate.gov.it/azienda/coca-cola"
+        ],
         "e-commerce": ["https://www.amazon.it/dp/coca-cola"],
         "altro": ["https://www.medium.com/@coca-cola"],
     }
