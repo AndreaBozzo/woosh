@@ -5,11 +5,7 @@ export const metadata: Metadata = {
   description: "Cerca e categorizza informazioni su aziende",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="it">
       <body>{children}</body>

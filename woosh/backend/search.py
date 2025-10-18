@@ -1,5 +1,5 @@
 from typing import Dict, List
-from urllib.parse import ParseResult, urlparse
+from urllib.parse import urlparse
 
 from classify import classify_url
 from config import EXCLUDED

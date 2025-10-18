@@ -1,80 +1,96 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
 *.pyc
 *.pyo
 *.pyd
+pip-log.txt
+pip-delete-this-directory.txt
 
-__pycache__/
-env/
+# Virtual environments
 .venv/
-build/
+venv/
+env/
+ENV/
 
-dist/
-*.egg-info/
-.DS_Store
-.vscode/
-.idea/
-.ipynb_checkpoints
-coverage
-
-# Logs
+# Node.js / Frontend
+node_modules/
+.next/
+out/
 *.log
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.turbo/
 
-# Unit test / coverage reports
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Testing
+.coverage
+.pytest_cache/
 htmlcov/
 .tox/
 .nox/
-.coverage
-
-.cache
-nosetests.xml
+.hypothesis/
+coverage/
 coverage.xml
 *.cover
-.hypothesis/
+nosetests.xml
 
-# Jupyter Notebook
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+*.sublime-workspace
 .ipynb_checkpoints
-# pyenv
-.python-version
-# mypy
+
+# Type checkers
 .mypy_cache/
 .dmypy.json
-
-# Pyre type checker
 .pyre/
-# pytype static type analyzer
 .pytype/
-
-#ruff cache
 .ruff_cache/
 
-#pytest cache
-.pytest_cache/
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
 
-# results
-results/*
+# Results and temporary files
+results/
 !results/.gitkeep
 
-
-#frontend/.gitignore
-frontend/__pycache__/
-frontend/*.pyc
-frontend/env/
-frontend/.venv/
-frontend/build/
-frontend/dist/
-frontend/*.egg-info/
-frontend/.DS_Store
-frontend/.vscode/
-frontend/coverage
-frontend/*.log
-frontend/.pytest_cache/
-frontend/.mypy_cache/
-frontend/.ruff_cache/
-frontend/.tox/
-frontend/.nox/
-frontend/htmlcov/
-frontend/.cache/
-frontend/.python-version
-frontend/.pyre/
-frontend/.pytype/
-
+# Build artifacts
+dist-ssr/
+*.local

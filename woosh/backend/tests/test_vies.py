@@ -1,7 +1,5 @@
 """Tests for VIES VAT validation module."""
 
-import pytest
-
 from woosh.backend.vies import parse_vat_input
 
 
