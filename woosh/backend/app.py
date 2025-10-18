@@ -1,10 +1,10 @@
 from typing import Dict, List
 
-from fastapi import FastAPI, Query, HTTPException
+from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from search import search_companies
-from vies import validate_vat, VATInfo
+from vies import VATInfo, validate_vat
 
 app = FastAPI(title="Woosh API", version="1.0.0")
 

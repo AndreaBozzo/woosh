@@ -1,6 +1,6 @@
-# Woosh
+# woosh
 
-Search and categorize company information with automated domain classification.
+Python tool for EU VAT validation and company web search. Helps to get rid of Google bullsh*t and ads.
 
 ## Project Structure
 
@@ -22,7 +22,6 @@ woosh/
 ├── Makefile            # Common development tasks
 ├── pyproject.toml      # Python project configuration
 
-template
 ```
 
 ## Requirements
