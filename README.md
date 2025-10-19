@@ -1,5 +1,33 @@
 # woosh
 
+
+             ______
+          ,'"       "-._
+        ,'              "-._ _._
+        ;              __,-'/   |
+       ;|           ,-' _,'"'._,.
+       |:            _,'      |\ `.
+       : \       _,-'         | \  `.
+        \ \   ,-'             |  \   \
+         \ '.         .-.     |       \
+          \  \         "      |        :
+           `. `.              |        |
+             `. "-._          |        ;
+             / |`._ `-._      L       /
+            /  | \ `._   "-.___    _,'
+           /   |  \_.-"-.___   """"
+           \   :            /"""
+            `._\_       __.'_
+       __,--''_ ' "--'''' \_  `-._
+ __,--'     .' /_  |   __. `-._   `-._
+<            `.  `-.-''  __,-'     _,-'
+ `.            `.   _,-'"      _,-'
+   `.            ''"lka    _,-'
+     `.                _,-'
+       `.          _,-'
+         `.   __,'"
+           `'"
+
 Python tool for EU VAT validation and company web search. Helps to get rid of Google bullsh*t and ads.
 Main files MUST contain ASCII art, this is mandatory and entirely for memes purposes.
 
