@@ -19,7 +19,7 @@
            \   :            /"""
             `._\_       __.'_
        __,--''_ ' "--'''' \_  `-._
- __,--'     .' /_  |   __. `-._   `-._
+       __,--'     .' /_  |   __. `-._   `-._
 
 Python tool for EU VAT validation and company web search. Helps to get rid of Google bullsh*t and ads.
 Main files MUST contain ASCII art, this is mandatory and entirely for memes purposes.
